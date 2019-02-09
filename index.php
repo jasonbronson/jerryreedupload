@@ -38,7 +38,9 @@ if($url){
         }
 
         $exec = shell_exec("sed -i 's/http:/https:/g' $outputFolder/index.html");
-        
+        if($debug){
+            dd($exec);
+        }
         echo "<br>SUCCESSFULLY COPIED ADOBE SPARK DATA<br>";
         exit;
 
