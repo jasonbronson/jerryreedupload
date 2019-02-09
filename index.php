@@ -1,8 +1,8 @@
 <?php
 
 $debug = $_REQUEST['debug'];
-$outputFolder = "~/Downloads/copy/";
-$tempOutputFolder = "~/Downloads/mysite/";
+$outputFolder = "/web/jerryreed/jerryreed.net/";
+$tempOutputFolder = "/tmp/jerryreed/";
 $url = $_POST['url'];
 if($url){
     
@@ -17,7 +17,7 @@ if($url){
         if($debug){
             dd($exec);
         }
-        $exec = shell_exec("httrack --clean -q -O $tempOutputFolder $url");
+        $exec = shell_exec("/usr/local/bin/httrack --clean -q -O $tempOutputFolder $url");
         if($debug){
             dd($exec);
         }
@@ -36,6 +36,8 @@ if($url){
         if($debug){
             dd($exec);
         }
+
+        $exec = shell_exec("sed -i 's/http:/https:/g' $outputFolder/index.html");
         
         echo "<br>SUCCESSFULLY COPIED ADOBE SPARK DATA<br>";
         exit;
